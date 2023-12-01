@@ -9,7 +9,7 @@ public class Home extends javax.swing.JFrame {
     private String[] states;
     private String startingState;
     private Map<String, HashMap<String, String>> transitions;
-    private DFA dfa;
+    public static DFA dfa;
 
     /**
      * Creates new form Home
@@ -163,7 +163,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void CheckEquivalenceButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // Check equivalence using dfa variable
+        new Page2().setVisible(true);
+        setVisible(false);
     }
 
 
