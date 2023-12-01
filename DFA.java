@@ -43,7 +43,6 @@ public class DFA {
             // If transition for the current state with input 'c' is not present
             if (nextState == null) {
                 // Input is invalid
-                Utility.showError(String.format("Your string contains the value '%c', which is not present in the input set", c));
                 return "Error";
             }
     
@@ -98,16 +97,11 @@ public class DFA {
     }
     
     public void minimizeDFA() {
-        System.out.println("Minimizing DFA...");
         // get reachableStates states from start state
         Set<String> reachableStates = getReachableStates(startingState, new HashSet<>());
-        System.out.println("Removing unreachable states from transitions...");
     
         // Step 1: remove unreachable states from transitions
         transitions.entrySet().removeIf(entry -> !reachableStates.contains(entry.getKey()));
-        System.out.println("Transitions after removing unreachable states: " + transitions);
-    
-        System.out.println("Merging states with similar transitions...");
     
         // Step 2: merge states with similar transitions
         ArrayList<String> mergedStates = new ArrayList<>();
@@ -135,12 +129,6 @@ public class DFA {
     
         // Update final states after minimization to include only existing states
         finalStates.retainAll(transitions.keySet());
-    
-        // Display final states after minimization
-        System.out.println("Minimized Transitions: " + transitions);
-        System.out.println("Final states after minimization: " + finalStates);
-        System.out.println("New DFA after minimization:");
-        System.out.println("Transitions: " + transitions);
     }
     
     
