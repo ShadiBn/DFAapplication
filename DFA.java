@@ -240,12 +240,12 @@ public class DFA {
             return generateSpecialCaseStrings(4); // Change the count as needed
         }
         
-        String acceptedString1 = generateAcceptedString(6);
-        String acceptedString2 = generateAcceptedString(6);
+        String acceptedString1 = "Accepted String: " + generateAcceptedString(6);
+        String acceptedString2 = "Accepted String: " + generateAcceptedString(6);
 
         
-        String notAcceptedString1 = generateNotAcceptedString(6);
-        String notAcceptedString2 = generateNotAcceptedString(6);
+        String notAcceptedString1 = "Not Accepted String: " + generateNotAcceptedString(6);
+        String notAcceptedString2 = "Not Accepted String: " + generateNotAcceptedString(6);
         
         return new String[]{acceptedString1, acceptedString2, notAcceptedString1, notAcceptedString2};
     }
@@ -258,8 +258,9 @@ public class DFA {
     for (int i = 0; i < count; i++) {
         StringBuilder generatedString = new StringBuilder();
         String currentState = startingState;
-
-        while (generatedString.length() < 6) {
+        generatedString.append("Accepted String: ");
+        
+        while (generatedString.length() < 23) {
             HashMap<String, String> currentStateTransitions = transitions.get(currentState);
             if (currentStateTransitions == null || currentStateTransitions.isEmpty()) {
                 break; // Handle the case when there are no transitions for the current state
