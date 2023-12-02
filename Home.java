@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Home extends javax.swing.JFrame {
 
-    // Declare variables for DFA
     private Set<String> validInputs;
     private Set<String> finalStates;
     private String[] states;
@@ -51,7 +50,7 @@ public class Home extends javax.swing.JFrame {
         ValidInputLabel.setForeground(new java.awt.Color(255, 255, 255));
         ValidInputLabel.setText("Valid Inputs");
         getContentPane().add(ValidInputLabel);
-        ValidInputLabel.setBounds(23, 42, 90, 17);
+        ValidInputLabel.setBounds(23, 46, 90, 17);
 
         ValidInputTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,13 +65,13 @@ public class Home extends javax.swing.JFrame {
         });
         
         getContentPane().add(ValidInputTextField);
-        ValidInputTextField.setBounds(240, 40, 64, 22);
+        ValidInputTextField.setBounds(240, 42, 40, 27);
 
         StatesLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         StatesLabel.setForeground(new java.awt.Color(255, 255, 255));
         StatesLabel.setText("All States(comma separated)");
         getContentPane().add(StatesLabel);
-        StatesLabel.setBounds(23, 91, 190, 17);
+        StatesLabel.setBounds(23, 95, 190, 17);
 
         StatesTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,23 +79,23 @@ public class Home extends javax.swing.JFrame {
             }
         });
         getContentPane().add(StatesTextField);
-        StatesTextField.setBounds(240, 90, 103, 22);
+        StatesTextField.setBounds(240, 91, 140, 27);
 
         StartingStateLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         StartingStateLabel.setForeground(new java.awt.Color(255, 255, 255));
         StartingStateLabel.setText("Enter Starting State");
         getContentPane().add(StartingStateLabel);
-        StartingStateLabel.setBounds(23, 145, 170, 17);
+        StartingStateLabel.setBounds(23, 149, 170, 17);
         getContentPane().add(StartingStateTextField);
-        StartingStateTextField.setBounds(240, 140, 64, 22);
+        StartingStateTextField.setBounds(240, 145, 64, 27);
 
         FinalStatesLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         FinalStatesLabel.setForeground(new java.awt.Color(255, 255, 255));
         FinalStatesLabel.setText("All Final States(comma separated)");
         getContentPane().add(FinalStatesLabel);
-        FinalStatesLabel.setBounds(23, 190, 220, 17);
+        FinalStatesLabel.setBounds(23, 194, 220, 17);
         getContentPane().add(FInalStatesTextField);
-        FInalStatesTextField.setBounds(240, 190, 137, 22);
+        FInalStatesTextField.setBounds(240, 190, 140, 27);
 
         CheckEquivalenceButton.setBackground(new java.awt.Color(249, 255, 98));
         CheckEquivalenceButton.setText("Check Equivalence");
@@ -190,21 +189,36 @@ public class Home extends javax.swing.JFrame {
     
         // Input for transitions
         transitions = new HashMap<>();
+
         for (String state : states) {
             HashMap<String, String> transition = new HashMap<>();
             for (String input : validInputs) {
-                String nextState = JOptionPane.showInputDialog(
-                        String.format("Enter transition state for state '%s' with input '%s':", state, input));
+                String nextState = JOptionPane.showInputDialog(String.format("Enter transition state for state '%s' with input '%s':", state, input));
+                
+                if (nextState == null) {
+                    transition.clear();
+                    break;
+                }
+
                 transition.put(input, nextState);
             }
+            transitions.put(state, transition);
+
+            if (transition.isEmpty()) {
+                    transitions.clear();
+                    break;
+                }
             transitions.put(state, transition);
         }
     
         // Create DFA
         dfa = new DFA(startingState, finalStates, (HashMap<String, HashMap<String, String>>) transitions);
-        String message = "Initial transitions";
-        // Display transitions in the list (assuming you have a displayTransitions method)
-        displayTransitions(message);
+        if (!transitions.isEmpty()) {
+            String message = "Initial transitions";
+            // Display transitions in the list (assuming you have a displayTransitions method)
+            displayTransitions(message);
+        }
+        
     }
     
     
@@ -239,7 +253,7 @@ public class Home extends javax.swing.JFrame {
         }
         else{
             String message = String.format("Your string ends at state '%s', which is not a final state", result);
-            JOptionPane.showMessageDialog(null, message);    
+            JOptionPane.showMessageDialog(null, message); 
         }
     }  
 

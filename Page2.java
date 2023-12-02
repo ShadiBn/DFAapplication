@@ -86,7 +86,7 @@ public class Page2 extends javax.swing.JFrame {
         ValidInputDFA2Label.setForeground(new java.awt.Color(255, 255, 255));
         ValidInputDFA2Label.setText("Valid Inputs");
         getContentPane().add(ValidInputDFA2Label);
-        ValidInputDFA2Label.setBounds(30, 70, 90, 17);
+        ValidInputDFA2Label.setBounds(30, 74, 90, 17);
 
         ValidInputDFA2TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,13 +94,13 @@ public class Page2 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ValidInputDFA2TextField);
-        ValidInputDFA2TextField.setBounds(250, 70, 64, 22);
+        ValidInputDFA2TextField.setBounds(250, 70, 40, 27);
 
         StatesDFA2Label.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         StatesDFA2Label.setForeground(new java.awt.Color(255, 255, 255));
         StatesDFA2Label.setText("All States(comma seperated)");
         getContentPane().add(StatesDFA2Label);
-        StatesDFA2Label.setBounds(20, 120, 190, 17);
+        StatesDFA2Label.setBounds(20, 124, 190, 17);
 
         StatesDFA2TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,23 +108,23 @@ public class Page2 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(StatesDFA2TextField);
-        StatesDFA2TextField.setBounds(250, 120, 103, 22);
+        StatesDFA2TextField.setBounds(250, 120, 140, 27);
 
         StartingStateDFA2Label.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         StartingStateDFA2Label.setForeground(new java.awt.Color(255, 255, 255));
         StartingStateDFA2Label.setText("Enter Starting State");
         getContentPane().add(StartingStateDFA2Label);
-        StartingStateDFA2Label.setBounds(20, 170, 170, 17);
+        StartingStateDFA2Label.setBounds(20, 174, 170, 17);
         getContentPane().add(StartingStateDFA2TextField);
-        StartingStateDFA2TextField.setBounds(250, 170, 64, 22);
+        StartingStateDFA2TextField.setBounds(250, 170, 40, 27);
 
         FinalStatesDFA2Label.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         FinalStatesDFA2Label.setForeground(new java.awt.Color(255, 255, 255));
         FinalStatesDFA2Label.setText("All Final States(comma seperated)");
         getContentPane().add(FinalStatesDFA2Label);
-        FinalStatesDFA2Label.setBounds(20, 220, 220, 17);
+        FinalStatesDFA2Label.setBounds(20, 224, 220, 17);
         getContentPane().add(FInalStatesDFA2TextField);
-        FInalStatesDFA2TextField.setBounds(250, 220, 137, 22);
+        FInalStatesDFA2TextField.setBounds(250, 220, 140, 27);
 
         CheckEquivalenceFinalButton.setBackground(new java.awt.Color(249, 255, 98));
         CheckEquivalenceFinalButton.setText("Check Equivalence");
@@ -200,18 +200,30 @@ public class Page2 extends javax.swing.JFrame {
         for (String state : states) {
             HashMap<String, String> transition = new HashMap<>();
             for (String input : validInputs) {
-                String nextState = JOptionPane.showInputDialog(
-                        String.format("Enter transition state for state '%s' with input '%s':", state, input));
+                String nextState = JOptionPane.showInputDialog(String.format("Enter transition state for state '%s' with input '%s':", state, input));
+                
+                if (nextState==null) {
+                    transition.clear();
+                    break;
+                }
                 transition.put(input, nextState);
+            }
+
+            if (transition.isEmpty()) {
+                transitions.clear();
+                break;
             }
             transitions.put(state, transition);
         }
     
         // Create DFA
         dfa2 = new DFA(startingState, finalStates, (HashMap<String, HashMap<String, String>>) transitions);
-        String message = "Initial transitions";
-        // Display transitions in the list (assuming you have a displayTransitions method)
-        displayTransitions(message);
+        
+        if (!transitions.isEmpty()) {
+            String message = "Initial transitions";
+            // Display transitions in the list (assuming you have a displayTransitions method)
+            displayTransitions(message);
+        }
                            
     }                                                          
 
