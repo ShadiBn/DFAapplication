@@ -1,19 +1,18 @@
-# DFA Playground
+# DFA Applicatin
 
-DFA Playground is an interactive Java Swing application designed to facilitate the exploration and manipulation of Deterministic Finite Automata (DFAs). This tool is ideal for students, educators, or anyone interested in experimenting with formal language theory concepts.
+DFA Application is an interactive Java Swing application designed to facilitate the exploration and manipulation of Deterministic Finite Automata (DFAs). This tool is ideal for students, educators, or anyone interested in experimenting with formal language theory concepts.
 
 ## Key Features
 
 - **DFA Definition:**
-  - Intuitive GUI for defining DFA properties.
-  - Specify valid input symbols, states, starting state, and final states.
-  - Dynamically create transitions between states based on input symbols.
+    - Input valid symbols, states, starting state, and final states.
+    - Define transitions between states based on input symbols.
 
 - **DFA Operations:**
-  - **Check Equivalence:** Compare the equivalence of two DFAs.
-  - **Minimize DFA:** Optimize the DFA by minimizing its transitions.
-  - **Validate Strings:** Verify whether a given string is accepted by the DFA.
-  - **Generate Strings:** Automatically generate strings accepted by the DFA.
+  - Compare the equivalence of two DFAs.
+  - Optimize the DFA by minimizing its transitions.
+  - Verify whether a given string is accepted by the DFA.
+  - Automatically generate strings accepted by the DFA.
 
 ## Getting Started
 
