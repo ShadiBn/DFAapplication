@@ -36,13 +36,13 @@ DFA Application is an interactive Java Swing application designed to facilitate 
 
 2. ## Perform Operations:
 
-**Check Equivalence:**
-- Explore whether two DFAs are equivalent.
-**Minimize DFA:**
-- Optimize your DFA by minimizing transitions.
-**Validate Strings:**
-Test a string to see if it's accepted by the DFA.
-**Generate Strings:**
-- Automatically generate strings that the DFA accepts.
-**Visualize Transitions:**
--Dynamic representation of DFA transitions for better understanding.
+- **Check Equivalence:**
+  - Explore whether two DFAs are equivalent.
+- **Minimize DFA:**
+  - Optimize your DFA by minimizing transitions.
+- **Validate Strings:**
+  - Test a string to see if it's accepted by the DFA.
+- **Generate Strings:**
+  - Automatically generate strings that the DFA accepts.
+- **Visualize Transitions:**
+  -Dynamic representation of DFA transitions for better understanding.
